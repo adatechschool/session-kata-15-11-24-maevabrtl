@@ -64,7 +64,6 @@ function getLatinCharacterList(strToConvert) {
 function copyToArr(toCopy, start, stop, arr, index) {
 	arr[index] = toCopy[start++];
 	while (start < stop && toCopy[start]) {
-		console.log(toCopy[start]);
 		arr[index] += toCopy[start++];
 	}
 	return arr;
@@ -83,9 +82,10 @@ function getMorseCharacterList(strToConvert) {
 		charsArrIndex++;
 		charsArr[charsArrIndex++] = " ";
 		while (i < strToConvert.length && strToConvert[i] != '.' && strToConvert[i] != '-') {
+			if (strToConvert[i] == '/')
+				charsArr[charsArrIndex++] = '/';
 			i++;
 		}
-		
 	}
 	return charsArr;
 }
@@ -137,10 +137,10 @@ let str = getLatinCharacterList("HELLO, WORLD");
 console.log(str);
 str = encode(str);
 console.log(str);
-// str = getMorseCharacterList(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
-// str = decode(getMorseCharacterList(".... . .-.. .-.. --- / .-- --- .-. .-.. -.."));
-// console.log(str);
-
+str = getMorseCharacterList(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+console.log(str);
+str = decode(str);
+console.log(str);
 
 /*
 .... . .-.. .-.. --- / .-- --- .-. .-.. -.. 
